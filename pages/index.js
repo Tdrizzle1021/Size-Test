@@ -42,6 +42,19 @@ const buttonStyle = {
   transition: "transform 0.1s ease, box-shadow 0.1s ease",
   boxShadow: "0 8px 20px rgba(0,0,0,0.15)"
 };
+
+const resultCardStyle = {
+  marginTop: "20px",
+  padding: "16px 18px",
+  background: "#f8f9fb",
+  borderRadius: "14px",
+  fontSize: "15px",
+  lineHeight: 1.5,
+  color: "#111",
+  boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
+  border: "1px solid #eee"
+};
+
 export default function Home() {
   const [fromBrand, setFromBrand] = useState("");
   const [toBrand, setToBrand] = useState("");
@@ -210,12 +223,13 @@ return (
 >
   Compare Sizes
 </button>
-   
+
 {result && (
-        <p style={{ marginTop: 20, fontWeight: "bold" }}>
-          {result}
-        </p>
-      )}
+  <div style={resultCardStyle}>
+    {result}
+  </div>
+)}
+
     </main>
   );
 }
