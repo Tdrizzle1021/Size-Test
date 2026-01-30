@@ -106,28 +106,29 @@ onClick={() => setOpen((prev) => !prev)}
     pointerEvents: open ? "auto" : "none"
   }}
 >
-          {options.map((brand) => (
-            <div
-              key={brand}
-              onClick={() => {
-                onChange(brand);
-                setOpen(false);
-              }}
-              style={{
-                padding: "12px 14px",
-                cursor: "pointer",
-                borderBottom: "1px solid #f0f0f0"
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#f7efe5")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "transparent")
-              }
-            >
-              {brand}
-            </div>
-          ))}
+         {options.map((brand) => (
+  <div
+    key={brand}
+    onClick={() => {
+      onChange(brand);
+      setOpen(false);
+    }}
+    style={{
+      padding: "12px 14px",
+      cursor: "pointer",
+      borderBottom: "1px solid #f0f0f0"
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.background = "#f7efe5";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.background = "transparent";
+    }}
+  >
+    {brand}
+  </div>
+))}
+
         </div>
     </div>
   );
@@ -183,29 +184,29 @@ function SizeSelect({ label, value, onChange, options }) {
   }}
 >
 
-          {options.map((size) => (
-            <div
-              key={size}
-              onClick={() => {
-                onChange(size);
-                setOpen(false);
-              }}
-              style={{
-                padding: "12px 14px",
-                cursor: "pointer",
-                borderBottom: "1px solid #f0f0f0"
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = onMouseEnter={(e) =>
-  (e.currentTarget.style.background = "#f7efe5"))
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "transparent")
-              }
-            >
-              {size}
-            </div>
-          ))}
+{options.map((size) => (
+  <div
+    key={size}
+    onClick={() => {
+      onChange(size);
+      setOpen(false);
+    }}
+    style={{
+      padding: "12px 14px",
+      cursor: "pointer",
+      borderBottom: "1px solid #f0f0f0"
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.background = "#f7efe5";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.background = "transparent";
+    }}
+  >
+    {size}
+  </div>
+))}
+
         </div>
     </div>
   );
