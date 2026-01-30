@@ -45,6 +45,18 @@ setResult(
 );
 
   };
+useEffect(() => {
+  function handleClickOutside(event) {
+    if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+      setShowTooltip(false);
+    }
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
   return (
     <main style={{ maxWidth: 400, margin: "60px auto", fontFamily: "sans-serif" }}>
@@ -62,6 +74,7 @@ setResult(
 
 {showTooltip && (
   <div
+    ref={tooltipRef}
     style={{
       position: "relative",
       background: "#111",
@@ -76,6 +89,7 @@ setResult(
       maxWidth: "360px"
     }}
   >
+
 <div
   style={{
     position: "absolute",
