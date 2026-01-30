@@ -13,20 +13,6 @@ const brandOffsets = {
   FreePeople: 1      // runs oversized
 };
 
-const brandLogos = {
-  Zara: "/logos/zara.png",
-  "H&M": "/logos/hm.png",
-  Nike: "/logos/nike.png",
-  Lululemon: "/logos/lululemon.png",
-  Aritzia: "/logos/aritzia.png",
-  Uniqlo: "/logos/uniqlo.png",
-  Abercrombie: "/logos/abercrombie.png",
-  Shein: "/logos/shein.png",
-  Everlane: "/logos/everlane.png",
-  Madewell: "/logos/madewell.png",
-  FreePeople: "/logos/freepeople.png"
-};
-
 const inputStyle = {
   width: "100%",
   padding: "12px 14px",
@@ -196,20 +182,6 @@ return (
   ))}
 </select>
 
-{fromBrand && brandLogos[fromBrand] && (
-  <img
-    src={brandLogos[fromBrand]}
-    alt={fromBrand}
-    style={{
-      height: 32,
-      marginTop: 10,
-      opacity: 0.85,
-      display: "block"
-    }}
-  />
-)}
-
-
       <br /><br />
 
 <label style={labelStyle}>Target Brand</label>
@@ -224,19 +196,6 @@ return (
     </option>
   ))}
 </select>
-
-{toBrand && brandLogos[toBrand] && (
-  <img
-    src={brandLogos[toBrand]}
-    alt={toBrand}
-  style={{
-  height: 32,
-  marginTop: 10,
-  opacity: 0.85,
-  display: "block"
-}}
-  />
-)}
 
       <br /><br />
 
