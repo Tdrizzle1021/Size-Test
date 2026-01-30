@@ -203,10 +203,12 @@ return (
     style={{
       height: 32,
       marginTop: 10,
-      opacity: 0.85
+      opacity: 0.85,
+      display: "block"
     }}
   />
 )}
+
 
       <br /><br />
 
@@ -227,11 +229,12 @@ return (
   <img
     src={brandLogos[toBrand]}
     alt={toBrand}
-    style={{
-      height: 32,
-      marginTop: 10,
-      opacity: 0.85
-    }}
+  style={{
+  height: 32,
+  marginTop: 10,
+  opacity: 0.85,
+  display: "block"
+}}
   />
 )}
 
