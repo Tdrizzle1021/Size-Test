@@ -132,6 +132,45 @@ return (
         How we estimate sizing
       </span>
     </p>
+<label style={labelStyle}>Category</label>
+
+<div style={{ display: "flex", gap: "10px", marginTop: 6 }}>
+  <button
+    type="button"
+    onClick={() => setCategory("tops")}
+    style={{
+      flex: 1,
+      padding: "10px",
+      borderRadius: "10px",
+      border: category === "tops" ? "2px solid #111" : "1px solid #ddd",
+      background: category === "tops" ? "#111" : "#fafafa",
+      color: category === "tops" ? "#fff" : "#111",
+      fontWeight: 600,
+      cursor: "pointer"
+    }}
+  >
+    Tops
+  </button>
+
+  <button
+    type="button"
+    disabled
+    style={{
+      flex: 1,
+      padding: "10px",
+      borderRadius: "10px",
+      border: "1px dashed #ccc",
+      background: "#f5f5f5",
+      color: "#999",
+      fontWeight: 600,
+      cursor: "not-allowed"
+    }}
+  >
+    Bottoms (Coming soon)
+  </button>
+</div>
+
+<br />
 
 
 {showTooltip && (
