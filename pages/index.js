@@ -196,6 +196,17 @@ return (
   ))}
 </select>
 
+{fromBrand && brandLogos[fromBrand] && (
+  <img
+    src={brandLogos[fromBrand]}
+    alt={fromBrand}
+    style={{
+      height: 32,
+      marginTop: 10,
+      opacity: 0.85
+    }}
+  />
+)}
 
       <br /><br />
 
@@ -212,6 +223,17 @@ return (
   ))}
 </select>
 
+{toBrand && brandLogos[toBrand] && (
+  <img
+    src={brandLogos[toBrand]}
+    alt={toBrand}
+    style={{
+      height: 32,
+      marginTop: 10,
+      opacity: 0.85
+    }}
+  />
+)}
 
       <br /><br />
 
