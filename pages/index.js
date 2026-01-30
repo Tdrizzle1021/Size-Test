@@ -18,6 +18,7 @@ export default function Home() {
   const [toBrand, setToBrand] = useState("");
   const [size, setSize] = useState("");
   const [result, setResult] = useState("");
+const [showTooltip, setShowTooltip] = useState(false);
 
   const handleCompare = () => {
     if (!fromBrand || !toBrand || !size) {
@@ -47,7 +48,51 @@ setResult(
   return (
     <main style={{ maxWidth: 400, margin: "60px auto", fontFamily: "sans-serif" }}>
       <h1>Find Your Size Across Brands</h1>
-      <p>Sizing varies by brand — we help you predict the right fit.</p>
+
+<p>
+  Sizing varies by brand — we help you predict the right fit.{" "}
+  <span
+    style={{ textDecoration: "underline", cursor: "pointer", fontSize: 14 }}
+    onClick={() => setShowTooltip(!showTooltip)}
+  >
+    How we estimate sizing
+  </span>
+</p>
+
+{showTooltip && (
+  <div
+    style={{
+      position: "relative",
+      background: "#111",
+      color: "#fff",
+      padding: "10px 12px",
+      borderRadius: "8px",
+      fontSize: "13px",
+      lineHeight: 1.4,
+      marginTop: "8px",
+      marginBottom: "15px",
+      boxShadow: "0 6px 16px rgba(0,0,0,0.25)",
+      maxWidth: "360px"
+    }}
+  >
+<div
+  style={{
+    position: "absolute",
+    top: "-6px",
+    left: "24px",
+    width: "12px",
+    height: "12px",
+    background: "#111",
+    transform: "rotate(45deg)"
+  }}
+/>
+
+    We compare how brands typically fit (small, true-to-size, or oversized) and
+    adjust your size accordingly. This is an early estimate based on shopper
+    feedback — not exact body or garment measurements.
+  </div>
+)}
+
 
     <label>Current Brand</label>
 <select onChange={(e) => setFromBrand(e.target.value)}>
