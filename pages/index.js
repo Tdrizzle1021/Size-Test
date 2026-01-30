@@ -1,11 +1,17 @@
-const brandOffsets = {
-  Zara: -1,        // runs small
-  "H&M": 0,        // fairly true
-  Nike: 0,         // true to size
-  Lululemon: -1    // runs tight
-};
-
 import { useState } from "react";
+const brandOffsets = {
+  Zara: -1,          // runs small
+  "H&M": 0,          // true to size
+  Nike: 0,           // true to size
+  Lululemon: -1,     // runs tight
+  Aritzia: -1,       // runs small
+  Uniqlo: 0,         // consistent
+  Abercrombie: 1,    // runs large
+  Shein: -1,         // runs small
+  Everlane: 0,       // true to size
+  Madewell: 1,       // runs large
+  FreePeople: 1      // runs oversized
+};
 
 export default function Home() {
   const [fromBrand, setFromBrand] = useState("");
