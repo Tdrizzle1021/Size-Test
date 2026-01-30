@@ -89,7 +89,7 @@ onClick={() => setOpen((prev) => !prev)}
         {value || "Select brand"}
       </button>
 
-     <div
+<div
   style={{
     position: "absolute",
     top: "110%",
@@ -102,8 +102,8 @@ onClick={() => setOpen((prev) => !prev)}
     overflow: "hidden",
     opacity: open ? 1 : 0,
     transform: open ? "translateY(0)" : "translateY(-6px)",
-    transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)"
-
+    transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)",
+    pointerEvents: open ? "auto" : "none"
   }}
 >
           {options.map((brand) => (
