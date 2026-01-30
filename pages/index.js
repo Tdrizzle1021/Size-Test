@@ -49,25 +49,29 @@ setResult(
       <h1>Find Your Size Across Brands</h1>
       <p>Sizing varies by brand — we help you predict the right fit.</p>
 
-      <label>Current Brand</label>
-      <select onChange={(e) => setFromBrand(e.target.value)}>
-        <option value="">Select brand</option>
-        <option>Zara</option>
-        <option>H&M</option>
-        <option>Nike</option>
-        <option>Lululemon</option>
-      </select>
+    <label>Current Brand</label>
+<select onChange={(e) => setFromBrand(e.target.value)}>
+  <option value="">Select brand</option>
+  {Object.keys(brandOffsets).map((brand) => (
+    <option key={brand} value={brand}>
+      {brand}
+    </option>
+  ))}
+</select>
+
 
       <br /><br />
 
-      <label>Target Brand</label>
-      <select onChange={(e) => setToBrand(e.target.value)}>
-        <option value="">Select brand</option>
-        <option>Zara</option>
-        <option>H&M</option>
-        <option>Nike</option>
-        <option>Lululemon</option>
-      </select>
+    <label>Target Brand</label>
+<select onChange={(e) => setToBrand(e.target.value)}>
+  <option value="">Select brand</option>
+  {Object.keys(brandOffsets).map((brand) => (
+    <option key={brand} value={brand}>
+      {brand}
+    </option>
+  ))}
+</select>
+
 
       <br /><br />
 
