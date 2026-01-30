@@ -12,6 +12,22 @@ const brandOffsets = {
   Madewell: 1,       // runs large
   FreePeople: 1      // runs oversized
 };
+const inputStyle = {
+  width: "100%",
+  padding: "12px 14px",
+  fontSize: "14px",
+  borderRadius: "10px",
+  border: "1px solid #ddd",
+  background: "#fafafa",
+  outline: "none",
+  marginTop: "6px"
+};
+
+const labelStyle = {
+  fontSize: "13px",
+  fontWeight: 600,
+  color: "#333"
+};
 
 export default function Home() {
   const [fromBrand, setFromBrand] = useState("");
@@ -58,19 +74,36 @@ useEffect(() => {
   };
 }, []);
 
-  return (
-    <main style={{ maxWidth: 400, margin: "60px auto", fontFamily: "sans-serif" }}>
-      <h1>Find Your Size Across Brands</h1>
-
-<p>
-  Sizing varies by brand — we help you predict the right fit.{" "}
-  <span
-    style={{ textDecoration: "underline", cursor: "pointer", fontSize: 14 }}
-    onClick={() => setShowTooltip(!showTooltip)}
+return (
+  <main
+    style={{
+      maxWidth: 420,
+      margin: "80px auto",
+      padding: "28px",
+      fontFamily: "system-ui, -apple-system, sans-serif",
+      background: "#ffffff",
+      borderRadius: "16px",
+      boxShadow: "0 12px 32px rgba(0,0,0,0.08)"
+    }}
   >
-    How we estimate sizing
-  </span>
-</p>
+    <h1 style={{ fontSize: 24, marginBottom: 8 }}>
+      Find Your Size Across Brands
+    </h1>
+
+    <p style={{ fontSize: 14, color: "#555", marginBottom: 16 }}>
+      Sizing varies by brand — we help you predict the right fit.{" "}
+      <span
+        style={{
+          textDecoration: "underline",
+          cursor: "pointer",
+          fontWeight: 500
+        }}
+        onClick={() => setShowTooltip(!showTooltip)}
+      >
+        How we estimate sizing
+      </span>
+    </p>
+
 
 {showTooltip && (
   <div
@@ -109,8 +142,11 @@ useEffect(() => {
 )}
 
 
-    <label>Current Brand</label>
-<select onChange={(e) => setFromBrand(e.target.value)}>
+<label style={labelStyle}>Current Brand</label>
+<select
+  style={inputStyle}
+  onChange={(e) => setFromBrand(e.target.value)}
+>
   <option value="">Select brand</option>
   {Object.keys(brandOffsets).map((brand) => (
     <option key={brand} value={brand}>
@@ -122,8 +158,11 @@ useEffect(() => {
 
       <br /><br />
 
-    <label>Target Brand</label>
-<select onChange={(e) => setToBrand(e.target.value)}>
+<label style={labelStyle}>Target Brand</label>
+<select
+  style={inputStyle}
+  onChange={(e) => setToBrand(e.target.value)}
+>
   <option value="">Select brand</option>
   {Object.keys(brandOffsets).map((brand) => (
     <option key={brand} value={brand}>
@@ -135,8 +174,11 @@ useEffect(() => {
 
       <br /><br />
 
-      <label>Your Usual Size</label>
-      <select onChange={(e) => setSize(e.target.value)}>
+<label style={labelStyle}>Your Usual Size</label>
+<select
+  style={inputStyle}
+  onChange={(e) => setSize(e.target.value)}
+>
         <option value="">Select size</option>
         <option>XS</option>
         <option>S</option>
