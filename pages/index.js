@@ -174,14 +174,15 @@ function SizeSelect({ label, value, onChange, options }) {
     borderRadius: "12px",
     boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
     zIndex: 30,
-    maxHeight: open ? 200 : 0,
+    maxHeight: open ? 240 : 0,
     overflow: "hidden",
     opacity: open ? 1 : 0,
     transform: open ? "translateY(0)" : "translateY(-6px)",
-    transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)"
-
+    transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)",
+    pointerEvents: open ? "auto" : "none"
   }}
 >
+
           {options.map((size) => (
             <div
               key={size}
