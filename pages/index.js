@@ -28,7 +28,20 @@ const labelStyle = {
   fontWeight: 600,
   color: "#333"
 };
-
+const buttonStyle = {
+  width: "100%",
+  padding: "14px",
+  marginTop: "10px",
+  borderRadius: "12px",
+  border: "none",
+  background: "#111",
+  color: "#fff",
+  fontSize: "15px",
+  fontWeight: 600,
+  cursor: "pointer",
+  transition: "transform 0.1s ease, box-shadow 0.1s ease",
+  boxShadow: "0 8px 20px rgba(0,0,0,0.15)"
+};
 export default function Home() {
   const [fromBrand, setFromBrand] = useState("");
   const [toBrand, setToBrand] = useState("");
@@ -189,11 +202,16 @@ return (
 
       <br /><br />
 
-      <button onClick={handleCompare}>
-        Compare Sizes
-      </button>
-
-      {result && (
+     <button
+  style={buttonStyle}
+  onClick={handleCompare}
+  onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.97)")}
+  onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
+>
+  Compare Sizes
+</button>
+   
+{result && (
         <p style={{ marginTop: 20, fontWeight: "bold" }}>
           {result}
         </p>
