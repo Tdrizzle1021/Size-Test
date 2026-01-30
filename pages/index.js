@@ -381,18 +381,12 @@ return (
   options={Object.keys(brandOffsets)}
 />
 
-<label style={labelStyle}>Your Usual Size</label>
-<select
-  style={inputStyle}
-  onChange={(e) => setSize(e.target.value)}
->
-        <option value="">Select size</option>
-        <option>XS</option>
-        <option>S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-      </select>
+<SizeSelect
+  label="Your Usual Size"
+  value={size}
+  onChange={setSize}
+  options={["XS", "S", "M", "L", "XL"]}
+/>
 
       <br /><br />
 
