@@ -262,17 +262,28 @@ useEffect(() => {
 }, []);
 
 return (
-  <main
+  <div
     style={{
-      maxWidth: 420,
-      margin: "80px auto",
-      padding: "28px",
-      fontFamily: "system-ui, -apple-system, sans-serif",
-      background: "#ffffff",
-      borderRadius: "16px",
-      boxShadow: "0 12px 32px rgba(0,0,0,0.08)"
+      minHeight: "100vh",
+      background:
+        "radial-gradient(circle at top, #f4f7fb 0%, #eef1f6 40%, #e9edf3 100%)",
+      padding: "20px"
     }}
   >
+    <main
+      style={{
+        maxWidth: 420,
+        margin: "80px auto",
+        padding: "28px",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        background: "#ffffff",
+        borderRadius: "16px",
+        boxShadow: "0 12px 32px rgba(0,0,0,0.08)",
+        position: "relative",
+        zIndex: 1
+      }}
+    >
+
     <h1 style={{ fontSize: 24, marginBottom: 8 }}>
       Find Your Size Across Brands
     </h1>
@@ -399,12 +410,13 @@ return (
   Compare Sizes
 </button>
 
-{result && (
-  <div style={resultCardStyle}>
-    {result}
-  </div>
-)}
+    {result && (
+      <div style={resultCardStyle}>
+        {result}
+      </div>
+    )}
 
     </main>
-  );
+  </div>
+);
 }
