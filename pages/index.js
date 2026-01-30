@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 const brandOffsets = {
   Zara: -1,          // runs small
   "H&M": 0,          // true to size
@@ -19,6 +19,7 @@ export default function Home() {
   const [size, setSize] = useState("");
   const [result, setResult] = useState("");
 const [showTooltip, setShowTooltip] = useState(false);
+const tooltipRef = useRef(null);
 
   const handleCompare = () => {
     if (!fromBrand || !toBrand || !size) {
