@@ -89,20 +89,23 @@ onClick={() => setOpen((prev) => !prev)}
         {value || "Select brand"}
       </button>
 
-      {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: "110%",
-            width: "100%",
-            background: "#fff",
-            borderRadius: "12px",
-            boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
-            zIndex: 30,
-            maxHeight: 240,
-            overflowY: "auto"
-          }}
-        >
+     <div
+  style={{
+    position: "absolute",
+    top: "110%",
+    width: "100%",
+    background: "#fff",
+    borderRadius: "12px",
+    boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+    zIndex: 30,
+    maxHeight: open ? 240 : 0,
+    overflow: "hidden",
+    opacity: open ? 1 : 0,
+    transform: open ? "translateY(0)" : "translateY(-6px)",
+    transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)"
+
+  }}
+>
           {options.map((brand) => (
             <div
               key={brand}
@@ -126,7 +129,6 @@ onClick={() => setOpen((prev) => !prev)}
             </div>
           ))}
         </div>
-      )}
     </div>
   );
 }
@@ -163,18 +165,23 @@ function SizeSelect({ label, value, onChange, options }) {
         {value || "Select size"}
       </button>
 
-      {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: "110%",
-            width: "100%",
-            background: "#fff",
-            borderRadius: "12px",
-            boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
-            zIndex: 30
-          }}
-        >
+<div
+  style={{
+    position: "absolute",
+    top: "110%",
+    width: "100%",
+    background: "#fff",
+    borderRadius: "12px",
+    boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+    zIndex: 30,
+    maxHeight: open ? 200 : 0,
+    overflow: "hidden",
+    opacity: open ? 1 : 0,
+    transform: open ? "translateY(0)" : "translateY(-6px)",
+    transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)"
+
+  }}
+>
           {options.map((size) => (
             <div
               key={size}
@@ -198,7 +205,6 @@ function SizeSelect({ label, value, onChange, options }) {
             </div>
           ))}
         </div>
-      )}
     </div>
   );
 }
