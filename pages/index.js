@@ -1,3 +1,10 @@
+const brandOffsets = {
+  Zara: -1,        // runs small
+  "H&M": 0,        // fairly true
+  Nike: 0,         // true to size
+  Lululemon: -1    // runs tight
+};
+
 import { useState } from "react";
 
 export default function Home() {
@@ -12,10 +19,23 @@ export default function Home() {
       return;
     }
 
-    // Mock sizing logic (placeholder)
-    setResult(
-      `If you wear a ${size} in ${fromBrand}, you’ll likely be a ${size} in ${toBrand}.`
-    );
+const sizes = ["XS", "S", "M", "L", "XL"];
+
+const fromIndex = sizes.indexOf(size);
+const adjustment =
+  (brandOffsets[toBrand] || 0) - (brandOffsets[fromBrand] || 0);
+
+let newIndex = fromIndex + adjustment;
+
+// Clamp to valid range
+newIndex = Math.max(0, Math.min(sizes.length - 1, newIndex));
+
+const recommendedSize = sizes[newIndex];
+
+setResult(
+  `If you wear a ${size} in ${fromBrand}, you’ll likely be a ${recommendedSize} in ${toBrand}.`
+);
+
   };
 
   return (
