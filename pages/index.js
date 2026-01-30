@@ -130,6 +130,78 @@ onClick={() => setOpen((prev) => !prev)}
     </div>
   );
 }
+function SizeSelect({ label, value, onChange, options }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} style={{ position: "relative", marginBottom: 20 }}>
+      <label style={labelStyle}>{label}</label>
+
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        style={{
+          ...inputStyle,
+          textAlign: "left",
+          background: "#fff",
+          cursor: "pointer",
+          fontWeight: value ? 600 : 400,
+          color: value ? "#111" : "#777"
+        }}
+      >
+        {value || "Select size"}
+      </button>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "110%",
+            width: "100%",
+            background: "#fff",
+            borderRadius: "12px",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+            zIndex: 30
+          }}
+        >
+          {options.map((size) => (
+            <div
+              key={size}
+              onClick={() => {
+                onChange(size);
+                setOpen(false);
+              }}
+              style={{
+                padding: "12px 14px",
+                cursor: "pointer",
+                borderBottom: "1px solid #f0f0f0"
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#f5f7fa")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "transparent")
+              }
+            >
+              {size}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   const [category, setCategory] = useState("tops");
