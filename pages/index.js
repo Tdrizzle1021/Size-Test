@@ -55,6 +55,81 @@ const resultCardStyle = {
   boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
   border: "1px solid #eee"
 };
+function BrandSelect({ label, value, onChange, options }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} style={{ position: "relative", marginBottom: 20 }}>
+      <label style={labelStyle}>{label}</label>
+
+      <button
+        type="button"
+onClick={() => setOpen((prev) => !prev)}
+
+        style={{
+          ...inputStyle,
+          textAlign: "left",
+          background: "#fff",
+          cursor: "pointer",
+          fontWeight: value ? 600 : 400,
+          color: value ? "#111" : "#777"
+        }}
+      >
+        {value || "Select brand"}
+      </button>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "110%",
+            width: "100%",
+            background: "#fff",
+            borderRadius: "12px",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+            zIndex: 30,
+            maxHeight: 240,
+            overflowY: "auto"
+          }}
+        >
+          {options.map((brand) => (
+            <div
+              key={brand}
+              onClick={() => {
+                onChange(brand);
+                setOpen(false);
+              }}
+              style={{
+                padding: "12px 14px",
+                cursor: "pointer",
+                borderBottom: "1px solid #f0f0f0"
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#f5f7fa")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "transparent")
+              }
+            >
+              {brand}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   const [category, setCategory] = useState("tops");
@@ -71,6 +146,10 @@ export default function Home() {
       setResult("Please select all options.");
       return;
     }
+if (fromBrand === toBrand) {
+  setResult("Please select two different brands to compare.");
+  return;
+}
 
 const sizes = ["XS", "S", "M", "L", "XL"];
 
@@ -209,36 +288,19 @@ return (
   </div>
 )}
 
+<BrandSelect
+  label="Current Brand"
+  value={fromBrand}
+  onChange={setFromBrand}
+  options={Object.keys(brandOffsets)}
+/>
 
-<label style={labelStyle}>Current Brand</label>
-<select
-  style={inputStyle}
-  onChange={(e) => setFromBrand(e.target.value)}
->
-  <option value="">Select brand</option>
-  {Object.keys(brandOffsets).map((brand) => (
-    <option key={brand} value={brand}>
-      {brand}
-    </option>
-  ))}
-</select>
-
-      <br /><br />
-
-<label style={labelStyle}>Target Brand</label>
-<select
-  style={inputStyle}
-  onChange={(e) => setToBrand(e.target.value)}
->
-  <option value="">Select brand</option>
-  {Object.keys(brandOffsets).map((brand) => (
-    <option key={brand} value={brand}>
-      {brand}
-    </option>
-  ))}
-</select>
-
-      <br /><br />
+<BrandSelect
+  label="Target Brand"
+  value={toBrand}
+  onChange={setToBrand}
+  options={Object.keys(brandOffsets)}
+/>
 
 <label style={labelStyle}>Your Usual Size</label>
 <select
