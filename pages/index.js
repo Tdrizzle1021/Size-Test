@@ -18,8 +18,8 @@ const inputStyle = {
   padding: "12px 14px",
   fontSize: "14px",
   borderRadius: "10px",
-  border: "1px solid #ddd",
-  background: "#fafafa",
+  border: "1px solid #e4d7c8",
+  background: "#fffaf4",
   outline: "none",
   marginTop: "6px"
 };
@@ -35,19 +35,19 @@ const buttonStyle = {
   marginTop: "10px",
   borderRadius: "12px",
   border: "none",
-  background: "#111",
+  background: "linear-gradient(135deg, #6b4f3f, #5a4033)",
   color: "#fff",
   fontSize: "15px",
   fontWeight: 600,
   cursor: "pointer",
-  transition: "transform 0.1s ease, box-shadow 0.1s ease",
-  boxShadow: "0 8px 20px rgba(0,0,0,0.15)"
+  transition: "transform 0.1s ease, box-shadow 0.15s ease",
+  boxShadow: "0 10px 24px rgba(90,64,51,0.35)"
 };
 
 const resultCardStyle = {
   marginTop: "20px",
   padding: "16px 18px",
-  background: "#f8f9fb",
+  background: "#faf4ec",
   borderRadius: "14px",
   fontSize: "15px",
   lineHeight: 1.5,
@@ -119,7 +119,7 @@ onClick={() => setOpen((prev) => !prev)}
                 borderBottom: "1px solid #f0f0f0"
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#f5f7fa")
+                (e.currentTarget.style.background = "#f7efe5")
               }
               onMouseLeave={(e) =>
                 (e.currentTarget.style.background = "transparent")
@@ -196,7 +196,8 @@ function SizeSelect({ label, value, onChange, options }) {
                 borderBottom: "1px solid #f0f0f0"
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#f5f7fa")
+                (e.currentTarget.style.background = onMouseEnter={(e) =>
+  (e.currentTarget.style.background = "#f7efe5"))
               }
               onMouseLeave={(e) =>
                 (e.currentTarget.style.background = "transparent")
@@ -265,8 +266,8 @@ return (
   <div
     style={{
       minHeight: "100vh",
-      background:
-        "radial-gradient(circle at top, #f4f7fb 0%, #eef1f6 40%, #e9edf3 100%)",
+background:
+  "radial-gradient(circle at top, #fdf6ee 0%, #f7efe5 40%, #f1e8dc 100%)",
       padding: "20px"
     }}
   >
@@ -276,7 +277,7 @@ return (
         margin: "80px auto",
         padding: "28px",
         fontFamily: "system-ui, -apple-system, sans-serif",
-        background: "#ffffff",
+        background: "#fffdf9",
         borderRadius: "16px",
         boxShadow: "0 12px 32px rgba(0,0,0,0.08)",
         position: "relative",
@@ -311,9 +312,9 @@ return (
       flex: 1,
       padding: "10px",
       borderRadius: "10px",
-      border: category === "tops" ? "2px solid #111" : "1px solid #ddd",
-      background: category === "tops" ? "#111" : "#fafafa",
-      color: category === "tops" ? "#fff" : "#111",
+      border: category === "tops" ? "2px solid #5a4033" : "1px solid #e4d7c8",
+      background: category === "tops" ? "#5a4033" : "#fffaf4",
+      color: category === "tops" ? "#fff" : "#5a4033",
       fontWeight: 600,
       cursor: "pointer"
     }}
@@ -347,7 +348,7 @@ return (
     ref={tooltipRef}
     style={{
       position: "relative",
-      background: "#111",
+      background: "#5a4033",
       color: "#fff",
       padding: "10px 12px",
       borderRadius: "8px",
@@ -367,7 +368,7 @@ return (
     left: "24px",
     width: "12px",
     height: "12px",
-    background: "#111",
+    background: "#5a4033",
     transform: "rotate(45deg)"
   }}
 />
