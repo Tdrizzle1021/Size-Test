@@ -57,12 +57,14 @@ const resultCardStyle = {
 };
 
 export default function Home() {
+  const [category, setCategory] = useState("tops");
+
   const [fromBrand, setFromBrand] = useState("");
   const [toBrand, setToBrand] = useState("");
   const [size, setSize] = useState("");
   const [result, setResult] = useState("");
-const [showTooltip, setShowTooltip] = useState(false);
-const tooltipRef = useRef(null);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipRef = useRef(null);
 
   const handleCompare = () => {
     if (!fromBrand || !toBrand || !size) {
