@@ -262,7 +262,7 @@ newIndex = Math.max(0, Math.min(sizes.length - 1, newIndex));
 const recommendedSize = sizes[newIndex];
 
 setResult(
-  `If you wear a ${size} in ${fromBrand}, you’ll likely be a ${recommendedSize} in ${toBrand}.`
+  `Estimated size: If you wear a ${size} in ${fromBrand}, you’ll likely be a ${recommendedSize} in ${toBrand}.`
 );
 
   };
@@ -389,10 +389,18 @@ background:
     transform: "rotate(45deg)"
   }}
 />
+    <strong>How we estimate sizing</strong>
+<br /><br />
+Size recommendations shown here are <strong>informational estimates only</strong>,
+based on general fit trends reported by shoppers and publicly observed brand
+patterns.
+<br /><br />
+Actual fit may vary depending on garment style, fabric, body shape, and personal
+preference. This tool does <strong>not</strong> guarantee fit.
+<br /><br />
+Brand names are used for identification purposes only and do not imply
+endorsement or affiliation.
 
-    We compare how brands typically fit (small, true-to-size, or oversized) and
-    adjust your size accordingly. This is an early estimate based on shopper
-    feedback — not exact body or garment measurements.
   </div>
 )}
 
