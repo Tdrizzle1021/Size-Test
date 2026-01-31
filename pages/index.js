@@ -55,27 +55,36 @@ const resultCardStyle = {
   boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
   border: "1px solid #eee"
 };
-function BrandSelect({ label, value, onChange, options }) {
-  const [open, setOpen] = useState(false);
+
+function BrandSelect({
+  label,
+  value,
+  onChange,
+  options,
+  id,
+  openDropdown,
+  setOpenDropdown
+}) {
+const open = openDropdown === id;
   const ref = useRef(null);
 
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (ref.current && !ref.current.contains(e.target)) {
-        setOpen(false);
-      }
+ useEffect(() => {
+  function handleClickOutside(e) {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setOpenDropdown(null);
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, [setOpenDropdown]);
 
   return (
     <div ref={ref} style={{ position: "relative", marginBottom: 20 }}>
       <label style={labelStyle}>{label}</label>
 
-      <button
-        type="button"
-onClick={() => setOpen((prev) => !prev)}
+<button
+  type="button"
+  onClick={() => setOpenDropdown(open ? null : id)}
 
         style={{
           ...inputStyle,
@@ -109,10 +118,10 @@ onClick={() => setOpen((prev) => !prev)}
          {options.map((brand) => (
   <div
     key={brand}
-    onClick={() => {
-      onChange(brand);
-      setOpen(false);
-    }}
+   onClick={() => {
+  onChange(brand);
+  setOpenDropdown(null);
+}}
     style={{
       padding: "12px 14px",
       cursor: "pointer",
@@ -133,19 +142,27 @@ onClick={() => setOpen((prev) => !prev)}
     </div>
   );
 }
-function SizeSelect({ label, value, onChange, options }) {
-  const [open, setOpen] = useState(false);
+function SizeSelect({
+  label,
+  value,
+  onChange,
+  options,
+  id,
+  openDropdown,
+  setOpenDropdown
+}) {
+  const open = openDropdown === id;
   const ref = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(e) {
       if (ref.current && !ref.current.contains(e.target)) {
-        setOpen(false);
+        setOpenDropdown(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [setOpenDropdown]);
 
   return (
     <div ref={ref} style={{ position: "relative", marginBottom: 20 }}>
@@ -153,7 +170,7 @@ function SizeSelect({ label, value, onChange, options }) {
 
       <button
         type="button"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setOpenDropdown(open ? null : id)}
         style={{
           ...inputStyle,
           textAlign: "left",
@@ -166,54 +183,53 @@ function SizeSelect({ label, value, onChange, options }) {
         {value || "Select size"}
       </button>
 
-<div
-  style={{
-    position: "absolute",
-    top: "110%",
-    width: "100%",
-    background: "#fff",
-    borderRadius: "12px",
-    boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
-    zIndex: 30,
-    maxHeight: open ? 240 : 0,
-    overflow: "hidden",
-    opacity: open ? 1 : 0,
-    transform: open ? "translateY(0)" : "translateY(-6px)",
-    transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)",
-    pointerEvents: open ? "auto" : "none"
-  }}
->
-
-{options.map((size) => (
-  <div
-    key={size}
-    onClick={() => {
-      onChange(size);
-      setOpen(false);
-    }}
-    style={{
-      padding: "12px 14px",
-      cursor: "pointer",
-      borderBottom: "1px solid #f0f0f0"
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.background = "#f7efe5";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.background = "transparent";
-    }}
-  >
-    {size}
-  </div>
-))}
-
-        </div>
+      <div
+        style={{
+          position: "absolute",
+          top: "110%",
+          width: "100%",
+          background: "#fff",
+          borderRadius: "12px",
+          boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+          zIndex: 30,
+          maxHeight: open ? 240 : 0,
+          overflow: "hidden",
+          opacity: open ? 1 : 0,
+          transform: open ? "translateY(0)" : "translateY(-6px)",
+          transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)",
+          pointerEvents: open ? "auto" : "none"
+        }}
+      >
+        {options.map((size) => (
+          <div
+            key={size}
+            onClick={() => {
+              onChange(size);
+              setOpenDropdown(null);
+            }}
+            style={{
+              padding: "12px 14px",
+              cursor: "pointer",
+              borderBottom: "1px solid #f0f0f0"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#f7efe5";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
+            {size}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default function Home() {
   const [category, setCategory] = useState("tops");
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   const [fromBrand, setFromBrand] = useState("");
   const [toBrand, setToBrand] = useState("");
@@ -381,24 +397,33 @@ background:
 )}
 
 <BrandSelect
+  id="fromBrand"
   label="Current Brand"
   value={fromBrand}
   onChange={setFromBrand}
   options={Object.keys(brandOffsets)}
+  openDropdown={openDropdown}
+  setOpenDropdown={setOpenDropdown}
 />
 
 <BrandSelect
+  id="toBrand"
   label="Target Brand"
   value={toBrand}
   onChange={setToBrand}
   options={Object.keys(brandOffsets)}
+  openDropdown={openDropdown}
+  setOpenDropdown={setOpenDropdown}
 />
 
 <SizeSelect
+  id="size"
   label="Your Usual Size"
   value={size}
   onChange={setSize}
   options={["XS", "S", "M", "L", "XL"]}
+  openDropdown={openDropdown}
+  setOpenDropdown={setOpenDropdown}
 />
 
       <br /><br />
