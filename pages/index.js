@@ -194,7 +194,7 @@ return () => document.removeEventListener("mouseup", handleClickOutside);
           boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
           zIndex: 30,
           maxHeight: open ? 240 : 0,
-          overflow: "hidden",
+          overflowY: open ? "auto" : "hidden",
           opacity: open ? 1 : 0,
           transform: open ? "translateY(0)" : "translateY(-6px)",
           transition: "all 0.22s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -326,6 +326,10 @@ background:
         How we estimate sizing
       </span>
     </p>
+<p style={{ fontSize: 12, color: "#777", marginBottom: 12 }}>
+  Estimates are based on general brand-level fit tendencies, not individual
+  product measurements.
+</p>
 <label style={labelStyle}>Category</label>
 
 <div style={{ display: "flex", gap: "10px", marginTop: 6 }}>
@@ -364,7 +368,8 @@ background:
   </button>
 </div>
 <p style={{ fontSize: 12, color: "#777", marginTop: 6 }}>
-  Currently supports women’s tops only.
+  Currently supports women’s tops only. Other categories are intentionally
+  excluded while fit patterns are validated.
 </p>
 <br />
 
@@ -409,7 +414,9 @@ preference. This tool does <strong>not</strong> guarantee fit.
 <br /><br />
 Brand names are used for identification purposes only and do not imply
 endorsement or affiliation.
-
+<br />
+Fit tendencies shown do not represent quality assessments, rankings,
+or performance comparisons between brands.
   </div>
 )}
 
@@ -472,11 +479,14 @@ endorsement or affiliation.
   Results are generated in real time and are not stored.
 </p>
     {result && (
-      <div style={resultCardStyle}>
-        {result}
-      </div>
-    )}
+  <div style={resultCardStyle}>
+    <div>{result}</div>
 
+    <p style={{ fontSize: 12, color: "#777", marginTop: 8 }}>
+      Based on aggregated fit patterns and shopper comparisons.
+    </p>
+  </div>
+)}
     </main>
   </div>
 );
