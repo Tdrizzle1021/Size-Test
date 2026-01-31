@@ -75,8 +75,8 @@ const open = openDropdown === id;
       setOpenDropdown(null);
     }
   }
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => document.removeEventListener("mousedown", handleClickOutside);
+  document.addEventListener("mouseup", handleClickOutside);
+return () => document.removeEventListener("mouseup", handleClickOutside);
 }, [setOpenDropdown]);
 
   return (
@@ -161,8 +161,8 @@ function SizeSelect({
         setOpenDropdown(null);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mouseup", handleClickOutside);
+return () => document.removeEventListener("mouseup", handleClickOutside);
   }, [setOpenDropdown]);
 
   return (
