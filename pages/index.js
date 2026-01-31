@@ -478,6 +478,9 @@ or performance comparisons between brands.
 <p style={{ fontSize: 12, color: "#777", marginTop: 10 }}>
   Results are generated in real time and are not stored.
 </p>
+<p style={{ fontSize: 11, color: "#888", marginTop: 6 }}>
+  All trademarks are the property of their respective owners.
+</p>
     {result && (
   <div style={resultCardStyle}>
     <div>{result}</div>
