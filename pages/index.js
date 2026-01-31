@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+const excludedBrands = []; // future opt-out list
 const brandOffsets = {
   Zara: -1,          // runs small
   "H&M": 0,          // true to size
@@ -236,6 +237,7 @@ export default function Home() {
   const [size, setSize] = useState("");
   const [result, setResult] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
+  const [acknowledged, setAcknowledged] = useState(false);
   const tooltipRef = useRef(null);
 
   const handleCompare = () => {
@@ -243,7 +245,12 @@ export default function Home() {
       setResult("Please select all options.");
       return;
     }
-if (fromBrand === toBrand) {
+  if (!acknowledged) {
+  setResult("Please acknowledge that this is an estimate before continuing.");
+  return;
+}
+
+  if (fromBrand === toBrand) {
   setResult("Please select two different brands to compare.");
   return;
 }
@@ -261,8 +268,8 @@ newIndex = Math.max(0, Math.min(sizes.length - 1, newIndex));
 
 const recommendedSize = sizes[newIndex];
 
-setResult(
-  `Estimated size: If you wear a ${size} in ${fromBrand}, you’ll likely be a ${recommendedSize} in ${toBrand}.`
+  setResult(
+  `Estimated size: Based on general fit patterns, someone who wears a ${size} in ${fromBrand} may prefer a ${recommendedSize} in ${toBrand}.`
 );
 
   };
@@ -409,7 +416,9 @@ endorsement or affiliation.
   label="Current Brand"
   value={fromBrand}
   onChange={setFromBrand}
-  options={Object.keys(brandOffsets)}
+  options={Object.keys(brandOffsets).filter(
+  (brand) => !excludedBrands.includes(brand)
+)}
   openDropdown={openDropdown}
   setOpenDropdown={setOpenDropdown}
 />
@@ -419,7 +428,9 @@ endorsement or affiliation.
   label="Target Brand"
   value={toBrand}
   onChange={setToBrand}
-  options={Object.keys(brandOffsets)}
+  options={Object.keys(brandOffsets).filter(
+  (brand) => !excludedBrands.includes(brand)
+)}
   openDropdown={openDropdown}
   setOpenDropdown={setOpenDropdown}
 />
@@ -435,7 +446,18 @@ endorsement or affiliation.
 />
 
       <br /><br />
-
+<div style={{ marginTop: 14, fontSize: 13 }}>
+  <label style={{ display: "flex", gap: 8, cursor: "pointer" }}>
+    <input
+      type="checkbox"
+      checked={acknowledged}
+      onChange={(e) => setAcknowledged(e.target.checked)}
+    />
+    <span>
+      I understand this size recommendation is an estimate, not a guarantee.
+    </span>
+  </label>
+</div>
      <button
   style={buttonStyle}
   onClick={handleCompare}
@@ -444,7 +466,9 @@ endorsement or affiliation.
 >
   Compare Sizes
 </button>
-
+<p style={{ fontSize: 12, color: "#777", marginTop: 10 }}>
+  Results are generated in real time and are not stored.
+</p>
     {result && (
       <div style={resultCardStyle}>
         {result}
