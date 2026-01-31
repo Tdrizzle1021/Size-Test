@@ -363,7 +363,9 @@ background:
     Bottoms (Coming soon)
   </button>
 </div>
-
+<p style={{ fontSize: 12, color: "#777", marginTop: 6 }}>
+  Currently supports women’s tops only.
+</p>
 <br />
 
 
